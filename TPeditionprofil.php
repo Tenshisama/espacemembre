@@ -45,6 +45,7 @@ session_start();
 							$msg = "Mot de passes différents";
 						}
 						}
+if(isset($_POST['change'])) {
 
 						if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name']))
 						{  $taillemax = 2097152;
@@ -75,7 +76,8 @@ session_start();
 								}
 							}
 							else
-							{ $msg ="la photo ne doit pas dépasser 2Mo"; }
+							{ $msg ="la photo ne doit pas dépasser 2Mo"; }}
+
 //verifier que cela n'empêche pas les messages d'erreur précédent pour l'avatar de s'afficher , ce n'est pas le cas
 						if(isset($_POST['newpseudo']) AND $_POST['newpseudo'] == $user['pseudo']) 
 						{
@@ -97,17 +99,20 @@ session_start();
 	    		<form method="POST" action="" enctype="multipart/form-data">
 
 	    			<label>Pseudo:</label>
-	    			<input type="text" name="newpseudo" placeholder="Nouveau pseudo" value="<?php echo $user['pseudo']; ?>" /><br />
+	    			<input type="text" name="newpseudo" placeholder="Nouveau pseudo" value="<?php echo $user['pseudo']; ?>" /><br /><br />
 	    			<label>Mail:</label>
-	    			<input type="mail" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" /><br />
+	    			<input type="mail" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" /><br /><br />
 	    			<label>Mot de passe:</label>
-	    			<input type="password" name="newmdp1" placeholder="mot de passe" /><br />
+	    			<input type="password" name="newmdp1" placeholder="mot de passe" /><br /><br />
 	    			<label>Confirmation mot de passe:</label>
-	    			<input type="password" name="newmdp2" placeholder="confirmer nouveau mot de passe" /><br />
-	    			<label> Avatar :</label>
-	    			<input type="file" name="avatar" /><br />
-	    			<input type="submit" value="Confirmer changement" /><br />
+	    			<input type="password" name="newmdp2" placeholder="confirmer nouveau mot de passe" /><br /><br />
+	       			<input type="submit" value="Confirmer changement" /><br /><br /><br />
 
+	    		</form>
+	    		<form method="POST" action="" enctype="multipart/form-data">
+	    				<label> Avatar :</label>
+	    				<input type="file" name="avatar" /><br /><br />
+	    				<input type="submit" value="Changer l'avatar" name="change" />
 	    		</form>
 	    		<?php if(isset($msg)) { echo $msg; } ?>
             </div>
